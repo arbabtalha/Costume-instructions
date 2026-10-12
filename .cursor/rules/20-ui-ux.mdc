@@ -1,0 +1,23 @@
+---
+description: UI/UX priority order and design quality gates
+globs: ["**/*.{ts,tsx,jsx,js,vue,svelte,astro,css,scss,html}"]
+alwaysApply: true
+---
+
+# UI/UX rules
+
+Full text: `instructions/20-ui-ux-rules.md`. Searchable database: `skills/ui-ux-pro-max/`.
+
+Priority: 1 accessibility -> 2 touch/interaction -> 3 performance -> 4 style consistency -> 5 responsive layout -> 6 typography/color -> 7 animation -> 8 forms/feedback -> 9 navigation -> 10 charts.
+
+Quick checks:
+- Contrast 4.5:1 body, 3:1 large text and borders, verified in both themes.
+- 44x44px touch targets, 8px+ spacing between them.
+- Type: 16px base, line-height 1.5+, two font families maximum, weights limited.
+- Space from the 4/8/12/16/24/32/48/64/96 scale. Section padding 64-96px desktop.
+- Color 60/30/10. Accent reserved for the primary action. Never color alone for state.
+- Motion 150-300ms, transform/opacity only, ease-out in, ease-in out, reduced-motion path.
+- Forms: visible labels, validate on blur, error next to the field, loading submit state.
+- Charts: labels, tooltips, no color-only encoding, no truncated bar axes.
+
+Search when unsure: `--domain ux|style|color|typography|chart|landing|product|icons` or `--stack <name>`.
