@@ -1,0 +1,51 @@
+# dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+bower_components/
+
+# build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+.svelte-kit/
+.astro/
+.turbo/
+.vercel/
+.netlify/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# environment / secrets - never commit these
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# editors / os
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# generated locally by setup.sh / installers
+.costume-backup/
+# design-system output written at the repo root by the skill's --persist flag.
+# Leading slash matters: skills/design-system must stay tracked.
+/design-system/
+*.local.json
+
+# coverage
+coverage/
+.nyc_output/

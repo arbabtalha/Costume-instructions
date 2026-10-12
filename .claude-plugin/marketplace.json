@@ -1,0 +1,33 @@
+{
+  "name": "costume-instructions",
+  "owner": {
+    "name": "arbabtalha",
+    "url": "https://github.com/arbabtalha"
+  },
+  "metadata": {
+    "description": "AI webapp generation kit: instructions, UI/UX design intelligence, and the 21st.dev MCP server",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "costume-webapp-kit",
+      "source": "./",
+      "description": "Instructions + skills + MCP for shipping production web apps with any AI coding agent. Includes UI/UX Pro Max design intelligence, the 21st.dev component MCP, four subagents (architect, ui-ux-designer, implementer, qa-reviewer) and slash commands (/webapp, /ui, /review, /ship, /mcp).",
+      "version": "1.0.0",
+      "author": {
+        "name": "arbabtalha"
+      },
+      "keywords": [
+        "webapp",
+        "ui",
+        "ux",
+        "design-system",
+        "frontend",
+        "instructions",
+        "mcp",
+        "21st"
+      ],
+      "category": "development"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+---
+description: Build protocol for any web app - design system first, all states, verified and reported
+globs: ["**/*.{ts,tsx,js,jsx,vue,svelte,astro,html,css}"]
+alwaysApply: true
+---
+
+# Webapp generation protocol
+
+Full text: `instructions/10-webapp-generation.md`. Stack notes: `instructions/30-stack-playbooks.md`.
+
+Before code: extract product, primary job, surface, stack, content, constraints, integrations, done-means. Missing four or more: ask up to three questions, otherwise state assumptions and proceed.
+
+Build order: tokens -> layout shell -> primitives -> sections -> states -> motion -> SEO -> verify.
+
+Hard rules:
+- No raw hex or magic pixels in components. Primitive and semantic tokens only.
+- Run the design skill first: `python3 skills/ui-ux-pro-max/scripts/search.py "<product> <industry> <keywords>" --design-system -p "Name"`.
+- Server components by default; `"use client"` at the smallest leaf. No `useEffect` for initial data.
+- Every async surface: loading skeleton, empty state, error with retry, success. No spinner-only pages.
+- All interactive elements: hover, focus-visible, active, disabled, loading. 44x44px minimum, cursor pointer, SVG icons not emoji.
+- Mobile first, verified at 375/768/1024/1440, no horizontal scroll at 320px.
+- Contrast 4.5:1 in light and dark, keyboard complete, reduced-motion respected.
+- Images sized, lazy below fold, hero prioritized. Fonts: two families max, display swap.
+- Real copy. Placeholders labeled TODO(content). Button labels are verbs.
+- Run typecheck + lint + build and paste real output before saying done.
+- Report: Built / Ran / Checked / Not done / Next.
+
+Never: purple-blue gradient hero with three identical cards, lorem ipsum, emoji icons, `outline: none` without replacement, animating width/height, secrets in client code, claiming tests passed without running them.

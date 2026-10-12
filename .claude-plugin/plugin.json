@@ -1,0 +1,26 @@
+{
+  "name": "costume-webapp-kit",
+  "version": "1.0.0",
+  "description": "Turn any AI coding agent into a senior webapp team. Ships the Costume instruction set (build protocol, UI/UX rules, stack playbooks, quality gates), UI/UX Pro Max design intelligence (79 styles, 192 palettes, 74 font pairings, 22 stacks), the 21st.dev component/UI-generation MCP server, plus subagents and slash commands that ship production web apps.",
+  "author": {
+    "name": "arbabtalha",
+    "url": "https://github.com/arbabtalha"
+  },
+  "homepage": "https://github.com/arbabtalha/Costume-instructions",
+  "repository": "https://github.com/arbabtalha/Costume-instructions",
+  "license": "MIT",
+  "keywords": [
+    "webapp",
+    "web-development",
+    "ui",
+    "ux",
+    "design-system",
+    "frontend",
+    "nextjs",
+    "react",
+    "tailwind",
+    "shadcn",
+    "accessibility",
+    "instructions"
+  ]
+}

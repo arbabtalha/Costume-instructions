@@ -1,0 +1,49 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify kit structure and skill runtime
+        run: ./scripts/verify.sh
+
+      - name: Site sources are complete
+        run: python3 scripts/build-site.py --check
+
+      - name: Site rebuild is current
+        run: |
+          python3 scripts/build-site.py --out index.html
+          if ! git diff --quiet -- index.html; then
+            echo "::error::index.html is stale. Run 'make site' and commit the result."
+            git --no-pager diff --stat -- index.html
+            exit 1
+          fi
+
+      - name: Installer dry run (every client)
+        run: |
+          tmp="$(mktemp -d)"
+          ./scripts/setup.sh --target "$tmp" --client all --dry-run
+
+      - name: Installer real run leaves valid configs
+        run: |
+          tmp="$(mktemp -d)"
+          ./scripts/setup.sh --target "$tmp" --client all --no-mcp >/dev/null
+          test -f "$tmp/AGENTS.md"
+          test -f "$tmp/.claude/skills/ui-ux-pro-max/SKILL.md"
+          test -f "$tmp/.cursor/rules/10-webapp-generation.mdc"
+          test -f "$tmp/.agents/skills/ui-ux-pro-max/SKILL.md"
+          test -f "$tmp/.costume/instructions/10-webapp-generation.md"
+          python3 "$tmp/.claude/skills/ui-ux-pro-max/scripts/search.py" "saas dashboard" --design-system -p "CI" | grep -q TARGET
+          echo "installer output verified"
