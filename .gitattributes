@@ -1,0 +1,13 @@
+# keep shell scripts and markdown on LF everywhere
+* text=auto eol=lf
+*.sh text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+
+# vendored data: keep as-is, do not diff in reviews
+skills/** -diff linguist-vendored
+starters/** linguist-documentation
+index.html -diff linguist-generated
