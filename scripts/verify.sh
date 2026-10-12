@@ -103,8 +103,21 @@ echo
 echo "Hygiene"
 soft "no node_modules committed" bash -c '! git ls-files | grep -q "^node_modules/"'
 soft "no .env committed" bash -c '! git ls-files | grep -qE "(^|/)\.env$"'
-soft "no __pycache__ in skills" bash -c '! find skills -name "__pycache__" -type d | grep -q .'
+soft "no __pycache__ or .pyc committed" bash -c '! git ls-files | grep -qE "__pycache__|\.pyc$"'
 soft "no API keys hardcoded" bash -c '! grep -rIn --exclude-dir=.git --exclude-dir=skills -E "(sk-[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16})" . | grep -q .'
+
+echo
+echo "Completeness (catches files git silently ignores)"
+if git rev-parse --git-dir >/dev/null 2>&1; then
+  check "every file in skills/ is tracked" bash -c \
+    'diff <(find skills -type f ! -path "*__pycache__*" ! -name "*.pyc" | sort) <(git ls-files skills | sort) >/dev/null'
+  check "every instruction file is tracked" bash -c \
+    'diff <(find instructions -type f -name "*.md" | sort) <(git ls-files instructions | sort) >/dev/null'
+  check "agents and commands are tracked" bash -c \
+    'diff <(find agents commands -type f -name "*.md" | sort) <(git ls-files agents commands | sort) >/dev/null'
+else
+  soft "skills/ files present on disk" bash -c 'test -f skills/ui-ux-pro-max/SKILL.md -a -f skills/design-system/SKILL.md'
+fi
 
 echo
 printf 'PASS %s   FAIL %s   WARN %s\n' "$PASS" "$FAIL" "$WARN"
