@@ -9,7 +9,7 @@ help: ## Show available targets
 setup: ## Install the kit into this repo's own project layout (client: all)
 	./scripts/setup.sh --target . --client all
 
-site: ## Rebuild index.html from the markdown
+site: ## Rebuild the documentation site and public repository search index
 	python3 scripts/build-site.py --out index.html
 
 verify: ## Run the full check suite
@@ -17,7 +17,7 @@ verify: ## Run the full check suite
 
 test: verify site ## Verify, then rebuild the site and confirm it is current
 	@python3 scripts/build-site.py --check
-	@git diff --quiet -- index.html || echo "note: index.html changed - commit it"
+	@git diff --quiet -- index.html repository-files.json || echo "note: generated site files changed - commit them"
 
 vendor-update: ## Refresh vendored skills from upstream repos
 	./scripts/vendor-update.sh
