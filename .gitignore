@@ -41,7 +41,9 @@ Thumbs.db
 
 # generated locally by setup.sh / installers
 .costume-backup/
-design-system/
+# design-system output written at the repo root by the skill's --persist flag.
+# Leading slash matters: skills/design-system must stay tracked.
+/design-system/
 *.local.json
 
 # coverage
