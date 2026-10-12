@@ -11,3 +11,4 @@
 skills/** -diff linguist-vendored
 starters/** linguist-documentation
 index.html -diff linguist-generated
+repository-files.json -diff linguist-generated

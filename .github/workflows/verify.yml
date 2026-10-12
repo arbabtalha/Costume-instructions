@@ -25,9 +25,9 @@ jobs:
       - name: Site rebuild is current
         run: |
           python3 scripts/build-site.py --out index.html
-          if ! git diff --quiet -- index.html; then
-            echo "::error::index.html is stale. Run 'make site' and commit the result."
-            git --no-pager diff --stat -- index.html
+          if ! git diff --quiet -- index.html repository-files.json; then
+            echo "::error::Generated site files are stale. Run 'make site' and commit the result."
+            git --no-pager diff --stat -- index.html repository-files.json
             exit 1
           fi
 

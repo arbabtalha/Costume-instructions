@@ -93,7 +93,13 @@ for c in webapp ui review ship mcp; do
 done
 
 echo
+echo "Site outputs"
+check "repository-files.json exists" test -f repository-files.json
+check "repository-files.json is valid JSON" python3 -c "import json;json.load(open('repository-files.json', encoding='utf-8'))"
+
+echo
 echo "Scripts"
+check "site builder regression tests" python3 scripts/tests/test_build_site.py
 check "setup.sh is executable" test -x scripts/setup.sh
 check "setup.sh --help works" bash scripts/setup.sh --help
 check "install-mcp.sh is executable" test -x scripts/install-mcp.sh
